@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Health Spending vs Life Expectancy (OECD)</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>Health Spending vs Life Expectancy across OECD Countries</h1>
+
+    <p class="subtitle">
+      This visualisation compares health spending (% of GDP, 2023) with life expectancy at birth (years, 2022).
+      Each point represents one country.
+    </p>
+
+    <div class="controls" role="group" aria-label="Visualisation controls">
+      <div class="control">
+        <label for="countrySelect">Highlight country:</label>
+        <select id="countrySelect">
+          <option value="__ALL__">All countries</option>
+        </select>
+      </div>
+
+      <div class="control">
+        <button id="toggleTrendline" type="button" aria-pressed="false">
+          Show trendline
+        </button>
+      </div>
+
+      <div class="control">
+        <button id="toggleColour" type="button" aria-pressed="true">
+          Colour: On
+        </button>
+      </div>
+    </div>
+
+    <div id="chart" aria-label="Scatterplot chart"></div>
+
+    <div id="tooltip" class="tooltip" aria-hidden="true"></div>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
