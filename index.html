@@ -1,45 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Health Spending vs Life Expectancy (OECD)</title>
+  <meta charset="utf-8" />
+  <title>Health Spending vs Life Expectancy — OECD</title>
   <link rel="stylesheet" href="css/styles.css" />
   <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
+
 <body>
-  <main class="container">
-    <h1>Health Spending vs Life Expectancy across OECD Countries</h1>
+  <main class="page">
 
-    <p class="subtitle">
-      This visualisation compares health spending (% of GDP, 2023) with life expectancy at birth (years, 2022).
-      Each point represents one country.
-    </p>
+    <header>
+      <h1>Health Spending vs Life Expectancy Across OECD Countries</h1>
+      <p class="subtitle">
+        Exploratory comparison of healthcare expenditure (% of GDP, 2023) and life expectancy at birth (years, 2022).
+        This visualisation is descriptive and does not imply causation.
+      </p>
+    </header>
 
-    <div class="controls" role="group" aria-label="Visualisation controls">
-      <div class="control">
-        <label for="countrySelect">Highlight country:</label>
+    <section class="context">
+      <h2>Background</h2>
+      <p>
+        OECD countries invest varying proportions of national income into healthcare systems, yet achieve
+        different population health outcomes. This visualisation supports comparative exploration of how
+        healthcare expenditure relates to life expectancy across countries.
+      </p>
+    </section>
+
+    <section class="controls">
+      <div class="control-group">
+        <label for="countrySelect">Highlight country</label>
         <select id="countrySelect">
-          <option value="__ALL__">All countries</option>
+          <option value="">None</option>
         </select>
       </div>
 
-      <div class="control">
-        <button id="toggleTrendline" type="button" aria-pressed="false">
-          Show trendline
-        </button>
+      <div class="control-group">
+        <label for="spendSlider">
+          Health spending filter (≤ % GDP):
+          <span id="spendValue"></span>
+        </label>
+        <input type="range" id="spendSlider" min="0" max="20" step="0.1" value="20" />
       </div>
 
-      <div class="control">
-        <button id="toggleColour" type="button" aria-pressed="true">
-          Colour: On
-        </button>
+      <div class="control-group toggles">
+        <button id="toggleTrend" type="button">Toggle trendline</button>
+        <button id="toggleColour" type="button">Toggle colour intensity</button>
       </div>
-    </div>
+    </section>
 
-    <div id="chart" aria-label="Scatterplot chart"></div>
+    <section class="legend-row">
+      <div id="legend" class="legend" aria-hidden="true"></div>
+      <div class="legend-note">
+        <span class="muted">Colour intensity encodes health spending (% of GDP):</span>
+        <span class="chip green">Lower</span>
+        <span class="chip amber">Mid</span>
+        <span class="chip red">Higher</span>
+      </div>
+    </section>
 
-    <div id="tooltip" class="tooltip" aria-hidden="true"></div>
+    <section class="viz-layout">
+      <div id="chart"></div>
+
+      <aside class="details">
+        <h3>Country details</h3>
+        <p class="hint">Hover for tooltip. Click a point to pin details. Brush to summarise a subset.</p>
+
+        <div class="panel">
+          <h4>Pinned</h4>
+          <div id="detailsContent">
+            <p><strong>Country:</strong> —</p>
+            <p><strong>Life expectancy:</strong> —</p>
+            <p><strong>Health spending:</strong> —</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h4>Brush summary</h4>
+          <div id="brushSummary">
+            <p><strong>Selected countries:</strong> —</p>
+            <p><strong>Mean life expectancy:</strong> —</p>
+            <p><strong>Mean spending:</strong> —</p>
+            <p class="muted small">Tip: drag a rectangle over points in the chart.</p>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="howto">
+      <h2>How to use this visualisation</h2>
+      <ul>
+        <li>Hover over points to see exact values.</li>
+        <li>Click a point to pin country details.</li>
+        <li>Brush across the chart to compare subsets (summary appears on the right).</li>
+        <li>Use the slider to filter countries by maximum spending.</li>
+        <li>Toggle the trendline and colour encoding to support interpretation.</li>
+      </ul>
+    </section>
+
+    <section class="limitations">
+      <h2>Limitations</h2>
+      <ul>
+        <li>Single-year snapshot; temporal trends are not shown.</li>
+        <li>Life expectancy is influenced by factors beyond health expenditure.</li>
+        <li>Associations shown are not causal.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p class="muted">
+        Data source: OECD Health Statistics (OECD Library).
+      </p>
+    </footer>
+
   </main>
 
   <script src="js/main.js"></script>
