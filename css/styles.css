@@ -113,10 +113,14 @@ select, input[type="range"] {
   align-items: start;
 }
 
+#chart {
+  width: 100%;
+}
+
 #chart svg {
-  background: var(--card);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .details {
