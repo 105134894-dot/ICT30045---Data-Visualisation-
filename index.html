@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Health Spending vs Life Expectancy — OECD</title>
+
   <link rel="stylesheet" href="css/styles.css" />
   <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
@@ -10,7 +12,7 @@
 <body>
   <main class="page">
 
-    <header>
+    <header class="site-header">
       <h1>Health Spending vs Life Expectancy Across OECD Countries</h1>
       <p class="subtitle">
         Exploratory comparison of healthcare expenditure (% of GDP, 2023) and life expectancy at birth (years, 2022).
@@ -27,7 +29,7 @@
       </p>
     </section>
 
-    <section class="controls">
+    <section class="controls" aria-label="Chart controls">
       <div class="control-group">
         <label for="countrySelect">Highlight country</label>
         <select id="countrySelect">
@@ -40,7 +42,18 @@
           Health spending filter (≤ % GDP):
           <span id="spendValue"></span>
         </label>
-        <input type="range" id="spendSlider" min="0" max="20" step="0.1" value="20" />
+        <input
+          type="range"
+          id="spendSlider"
+          min="0"
+          max="20"
+          step="0.1"
+          value="20"
+          aria-describedby="spendHelp"
+        />
+        <div id="spendHelp" class="muted small">
+          Reduces the displayed set of countries to those at or below the selected spending level.
+        </div>
       </div>
 
       <div class="control-group toggles">
@@ -49,7 +62,7 @@
       </div>
     </section>
 
-    <section class="legend-row">
+    <section class="legend-row" aria-label="Colour legend">
       <div id="legend" class="legend" aria-hidden="true"></div>
       <div class="legend-note">
         <span class="muted">Colour intensity encodes health spending (% of GDP):</span>
@@ -60,9 +73,18 @@
     </section>
 
     <section class="viz-layout">
-      <div id="chart"></div>
+      <div class="viz-card">
+        <div class="viz-header">
+          <h2 class="viz-title">OECD comparison (2022–2023)</h2>
+          <p class="viz-subtitle muted">
+            Each point represents a country. Use controls to filter, highlight, and compare subsets.
+          </p>
+        </div>
 
-      <aside class="details">
+        <div id="chart" role="img" aria-label="Scatterplot of health spending vs life expectancy"></div>
+      </div>
+
+      <aside class="details" aria-label="Details panels">
         <h3>Country details</h3>
         <p class="hint">Hover for tooltip. Click a point to pin details. Brush to summarise a subset.</p>
 
@@ -92,6 +114,7 @@
       <ul>
         <li>Hover over points to see exact values.</li>
         <li>Click a point to pin country details.</li>
+        <li>Click empty chart space to clear a pinned selection.</li>
         <li>Brush across the chart to compare subsets (summary appears on the right).</li>
         <li>Use the slider to filter countries by maximum spending.</li>
         <li>Toggle the trendline and colour encoding to support interpretation.</li>
@@ -107,7 +130,7 @@
       </ul>
     </section>
 
-    <footer>
+    <footer class="site-footer">
       <p class="muted">
         Data source: OECD Health Statistics (OECD Library).
       </p>

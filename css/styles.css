@@ -7,6 +7,8 @@
   --shadow: 0 1px 3px rgba(0,0,0,0.06);
 }
 
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, sans-serif;
@@ -20,7 +22,7 @@ body {
   padding: 2rem;
 }
 
-header h1 {
+.site-header h1 {
   margin-bottom: 0.25rem;
 }
 
@@ -41,6 +43,7 @@ section { margin-top: 1.75rem; }
   border: 1px solid var(--border);
   padding: 1rem;
   box-shadow: var(--shadow);
+  border-radius: 10px;
 }
 
 .control-group {
@@ -83,11 +86,12 @@ select, input[type="range"] {
 }
 
 .legend {
-  display: none;
+  display: none; /* JS shows/hides */
   background: var(--card);
   border: 1px solid var(--border);
   padding: 0.6rem 0.75rem;
   box-shadow: var(--shadow);
+  border-radius: 10px;
 }
 
 .legend-note { font-size: 0.95rem; }
@@ -113,9 +117,35 @@ select, input[type="range"] {
   align-items: start;
 }
 
-#chart {
-  width: 100%;
+@media (max-width: 980px) {
+  .viz-layout {
+    grid-template-columns: 1fr;
+  }
 }
+
+.viz-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.viz-header {
+  padding: 0.25rem 0.25rem 0.75rem 0.25rem;
+}
+
+.viz-title {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.1rem;
+}
+
+.viz-subtitle {
+  margin: 0;
+  line-height: 1.35;
+}
+
+#chart { width: 100%; }
 
 #chart svg {
   width: 100%;
@@ -128,10 +158,16 @@ select, input[type="range"] {
   border: 1px solid var(--border);
   padding: 1rem;
   box-shadow: var(--shadow);
+  border-radius: 10px;
 }
 
 .details h3 { margin-top: 0; }
-.hint { color: #777; font-size: 0.95rem; line-height: 1.35; }
+
+.hint {
+  color: #777;
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
 
 .panel {
   margin-top: 1rem;
@@ -144,7 +180,17 @@ select, input[type="range"] {
   font-size: 1rem;
 }
 
-footer {
+.context, .howto, .limitations {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+}
+
+.context h2, .howto h2, .limitations h2 { margin-top: 0; }
+
+.site-footer {
   margin-top: 2.5rem;
   font-size: 0.95rem;
 }
