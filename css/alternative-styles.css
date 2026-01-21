@@ -1,0 +1,288 @@
+/* =========================================
+   Additional styles for alternative designs
+   ========================================= */
+
+.design-note {
+  background: #fff8dc;
+  border: 1px solid #f0e68c;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.design-note strong {
+  color: #b8860b;
+}
+
+.design-note a {
+  color: #4682b4;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.design-note a:hover {
+  text-decoration: underline;
+}
+
+/* Layout for dual charts */
+.viz-layout-alt {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .viz-layout-alt {
+    grid-template-columns: 1fr;
+  }
+}
+
+.viz-card-alt {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.viz-card-alt .viz-header {
+  padding: 0.5rem 0.5rem 1rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+}
+
+#chartLeft,
+#chartRight {
+  width: 100%;
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#chartLeft svg,
+#chartRight svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Details panel for alternative */
+.details-alt {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.details-alt h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.details-alt #detailsContent p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+/* Search input styling */
+#countrySearch {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+#countrySearch:focus {
+  outline: none;
+  border-color: #4682b4;
+  box-shadow: 0 0 0 2px rgba(70, 130, 180, 0.1);
+}
+
+#resetBtn {
+  padding: 0.55rem 1rem;
+  border: 1px solid var(--border);
+  background: #f7f7f7;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+#resetBtn:hover {
+  background: #f1f1f1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .viz-card-alt {
+    padding: 0.75rem;
+  }
+
+  #chartLeft,
+  #chartRight {
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  #chartLeft svg,
+  #chartRight svg {
+    width: auto;
+    height: auto;
+    min-width: 600px; /* Ensure bars remain readable on mobile */
+  }
+}
+
+@media (min-width: 769px) {
+  .viz-layout-alt {
+    max-width: 100%;
+  }
+
+  .viz-card-alt {
+    min-height: fit-content;
+  }
+}
+
+/* =========================================
+   Bubble Map Specific Styles
+   ========================================= */
+
+.legend-bubble {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.legend-bubble h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.95rem;
+}
+
+.bubble-legend-items {
+  display: flex;
+  align-items: center;
+}
+
+.color-legend-gradient {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gradient-bar {
+  width: 200px;
+  height: 20px;
+  background: linear-gradient(to right, #ffffd9, #7fcdbb, #2c7fb8);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.gradient-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* =========================================
+   Quadrant Chart Specific Styles
+   ========================================= */
+
+.quadrant-summary {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  border-radius: 10px;
+  margin-top: 2rem;
+}
+
+.quadrant-summary h3 {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.quadrant-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .quadrant-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.quadrant-stat {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 2px solid;
+}
+
+.quadrant-stat h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+}
+
+.quadrant-stat p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.quadrant-stat.high-high {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.05);
+}
+
+.quadrant-stat.high-low {
+  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.05);
+}
+
+.quadrant-stat.low-high {
+  border-color: #3498db;
+  background: rgba(52, 152, 219, 0.05);
+}
+
+.quadrant-stat.low-low {
+  border-color: #95a5a6;
+  background: rgba(149, 165, 166, 0.05);
+}
+
+/* Map chart centering */
+#mapChart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#mapChart svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Quadrant chart centering */
+#quadrantChart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#quadrantChart svg {
+  max-width: 100%;
+  height: auto;
+}
