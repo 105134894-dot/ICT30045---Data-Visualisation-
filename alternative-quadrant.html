@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alternative Design: Quadrant Chart — OECD</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/alternative-styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="site-header">
+      <h1>Alternative Design: Quadrant Chart</h1>
+      <p class="subtitle">
+        OECD countries categorized into four groups based on median life expectancy
+        and health spending levels.
+      </p>
+    </header>
+
+    <section class="context">
+      <h2>Design Rationale</h2>
+      <p>
+        This alternative groups countries into four categories based on whether they fall above
+        or below the median values for life expectancy and health spending. This categorical
+        approach simplifies interpretation but sacrifices precision.
+      </p>
+
+      <h3>Strengths</h3>
+      <ul>
+        <li>Simple categorical grouping - easy to understand</li>
+        <li>Highlights "efficiency" patterns (high outcomes despite low spending)</li>
+        <li>Good for strategic insights and policy discussions</li>
+        <li>Less overwhelming than continuous scales</li>
+        <li>Clear identification of outlier groups</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+        <li>Loss of precision - continuous data becomes categorical</li>
+        <li>Arbitrary threshold decisions (why use median?)</li>
+        <li>Can't see fine-grained differences within quadrants</li>
+        <li>Countries near boundaries appear very different despite small actual differences</li>
+        <li>Doesn't show strength of relationship or trends</li>
+      </ul>
+    </section>
+
+    <section class="controls" aria-label="Chart controls">
+      <div class="control-group">
+        <label for="quadrantCountrySelect">Highlight country:</label>
+        <select id="quadrantCountrySelect">
+          <option value="">None</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <button id="quadrantResetBtn" type="button">Clear highlight</button>
+      </div>
+    </section>
+
+    <section class="viz-card" style="margin-top: 2rem;">
+      <div class="viz-header">
+        <h2 class="viz-title">Four-Quadrant Categorization</h2>
+        <p class="viz-subtitle muted">Countries grouped by median thresholds</p>
+      </div>
+      <div id="quadrantChart" role="img" aria-label="Quadrant chart showing country categorization"></div>
+    </section>
+
+    <section class="quadrant-summary">
+      <h3>Quadrant Statistics</h3>
+      <div class="quadrant-grid">
+        <div class="quadrant-stat high-high">
+          <h4>High Spending / High Life Expectancy</h4>
+          <div id="quadrant-hh-stats">—</div>
+          <p class="muted small">Countries with above-median spending AND above-median life expectancy</p>
+        </div>
+        <div class="quadrant-stat high-low">
+          <h4>High Spending / Low Life Expectancy</h4>
+          <div id="quadrant-hl-stats">—</div>
+          <p class="muted small">Countries with above-median spending BUT below-median life expectancy</p>
+        </div>
+        <div class="quadrant-stat low-high">
+          <h4>Low Spending / High Life Expectancy</h4>
+          <div id="quadrant-lh-stats">—</div>
+          <p class="muted small">Countries with below-median spending BUT above-median life expectancy (efficient)</p>
+        </div>
+        <div class="quadrant-stat low-low">
+          <h4>Low Spending / Low Life Expectancy</h4>
+          <div id="quadrant-ll-stats">—</div>
+          <p class="muted small">Countries with below-median spending AND below-median life expectancy</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="details-alt" aria-label="Selected country details">
+      <h3>Selected Country</h3>
+      <div id="quadrantDetailsContent">
+        <p><strong>Country:</strong> —</p>
+        <p><strong>Quadrant:</strong> —</p>
+        <p><strong>Life expectancy:</strong> —</p>
+        <p><strong>Health spending:</strong> —</p>
+        <p class="muted small">Click on a country to see details</p>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p class="muted">
+        Data source: OECD Health Statistics (OECD Library). Alternative design for process book documentation.
+      </p>
+    </footer>
+
+  </main>
+
+  <script src="js/alternative-quadrant.js"></script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alternative Design: Geographic Bubble Map — OECD</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/alternative-styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="site-header">
+      <h1>Alternative Design: Geographic Bubble Map</h1>
+      <p class="subtitle">
+        OECD countries positioned geographically with bubble size representing health spending
+        and color representing life expectancy.
+      </p>
+    </header>
+
+    <section class="context">
+      <h2>Design Rationale</h2>
+      <p>
+        This alternative uses geographic positioning to place countries on a simplified world map.
+        Bubble size encodes health spending (% GDP), and color encodes life expectancy.
+        This approach leverages spatial familiarity but may not be ideal for analyzing relationships.
+      </p>
+
+      <h3>Strengths</h3>
+      <ul>
+        <li>Leverages geographic knowledge - people know where countries are</li>
+        <li>Engaging visual - maps naturally draw attention</li>
+        <li>Can identify regional patterns or clusters</li>
+        <li>Intuitive for general audiences</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+        <li>Geographic position is irrelevant to the spending/expectancy relationship</li>
+        <li>Overlapping bubbles in Europe (many OECD countries close together)</li>
+        <li>Hard to compare exact values between distant countries</li>
+        <li>Doesn't clearly show correlation between variables</li>
+        <li>Requires more complex implementation</li>
+      </ul>
+    </section>
+
+    <section class="controls" aria-label="Chart controls">
+      <div class="control-group">
+        <label for="bubbleCountrySelect">Highlight country:</label>
+        <select id="bubbleCountrySelect">
+          <option value="">None</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <button id="bubbleResetBtn" type="button">Clear highlight</button>
+      </div>
+    </section>
+
+    <section class="legend-row" aria-label="Chart legend">
+      <div class="legend-bubble">
+        <h4>Bubble Size = Health Spending</h4>
+        <div class="bubble-legend-items">
+          <svg width="200" height="60">
+            <circle cx="20" cy="30" r="8" fill="#4682b4" opacity="0.7"></circle>
+            <text x="35" y="35" font-size="12">Low (~5% GDP)</text>
+            <circle cx="120" cy="30" r="15" fill="#4682b4" opacity="0.7"></circle>
+            <text x="145" y="35" font-size="12">High (~17% GDP)</text>
+          </svg>
+        </div>
+      </div>
+      <div class="legend-bubble">
+        <h4>Color = Life Expectancy</h4>
+        <div class="color-legend-gradient">
+          <div class="gradient-bar"></div>
+          <div class="gradient-labels">
+            <span>74 years</span>
+            <span>79 years</span>
+            <span>84 years</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="viz-card" style="margin-top: 2rem;">
+      <div class="viz-header">
+        <h2 class="viz-title">Geographic Distribution of OECD Countries</h2>
+        <p class="viz-subtitle muted">Hover over bubbles for details. Geographic position is approximate.</p>
+      </div>
+      <div id="mapChart" role="img" aria-label="Geographic bubble map of health spending and life expectancy"></div>
+    </section>
+
+    <section class="details-alt" aria-label="Selected country details">
+      <h3>Selected Country</h3>
+      <div id="mapDetailsContent">
+        <p><strong>Country:</strong> —</p>
+        <p><strong>Life expectancy:</strong> —</p>
+        <p><strong>Health spending:</strong> —</p>
+        <p class="muted small">Hover over or select a country to see details</p>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p class="muted">
+        Data source: OECD Health Statistics (OECD Library). Alternative design for process book documentation.
+      </p>
+    </footer>
+
+  </main>
+
+  <script src="js/alternative-bubble-map.js"></script>
+</body>
+</html>

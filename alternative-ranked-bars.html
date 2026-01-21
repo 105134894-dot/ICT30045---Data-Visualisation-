@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alternative Design: Ranked Bar Charts — OECD</title>
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/alternative-styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="site-header">
+      <h1>Alternative Design: Dual Ranked Bar Charts</h1>
+      <p class="subtitle">
+        Comparing OECD countries by life expectancy (left) and health spending (right).
+        This alternative design focuses on ranking and relative positioning rather than correlation.
+      </p>
+    </header>
+
+    <section class="context">
+      <h2>Design Rationale</h2>
+      <p>
+        This alternative explores ranking-based comparison. Each country appears on both charts,
+        allowing viewers to see relative positions in both dimensions. Hover over a country
+        to highlight its position on both rankings.
+      </p>
+
+      <h3>Strengths</h3>
+      <ul>
+        <li>Clear individual country rankings</li>
+        <li>Easy to identify top and bottom performers</li>
+        <li>Familiar bar chart format</li>
+        <li>Good for mobile/narrow screens</li>
+      </ul>
+
+      <h3>Limitations</h3>
+      <ul>
+        <li>Harder to see correlation between variables</li>
+        <li>Doesn't show quantitative relationship</li>
+        <li>Visual clutter with 39 countries</li>
+        <li>Limited analytical capabilities vs. scatterplot</li>
+      </ul>
+    </section>
+
+    <section class="controls" aria-label="Chart controls">
+      <div class="control-group">
+        <label for="countrySearch">Search country:</label>
+        <input type="text" id="countrySearch" placeholder="Type country name..." />
+      </div>
+
+      <div class="control-group">
+        <button id="resetBtn" type="button">Clear highlight</button>
+      </div>
+    </section>
+
+    <section class="viz-layout-alt">
+      <div class="viz-card-alt">
+        <div class="viz-header">
+          <h2 class="viz-title">Life Expectancy Rankings</h2>
+          <p class="viz-subtitle muted">Countries ranked by life expectancy at birth (2022)</p>
+        </div>
+        <div id="chartLeft" role="img" aria-label="Bar chart of countries ranked by life expectancy"></div>
+      </div>
+
+      <div class="viz-card-alt">
+        <div class="viz-header">
+          <h2 class="viz-title">Health Spending Rankings</h2>
+          <p class="viz-subtitle muted">Countries ranked by health spending (% of GDP, 2023)</p>
+        </div>
+        <div id="chartRight" role="img" aria-label="Bar chart of countries ranked by health spending"></div>
+      </div>
+    </section>
+
+    <section class="details-alt" aria-label="Selected country details">
+      <h3>Selected Country</h3>
+      <div id="detailsContent">
+        <p><strong>Country:</strong> —</p>
+        <p><strong>Life expectancy rank:</strong> —</p>
+        <p><strong>Life expectancy:</strong> —</p>
+        <p><strong>Health spending rank:</strong> —</p>
+        <p><strong>Health spending:</strong> —</p>
+        <p class="muted small">Hover over or search for a country to see details</p>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p class="muted">
+        Data source: OECD Health Statistics (OECD Library). Alternative design for process book documentation.
+      </p>
+    </footer>
+
+  </main>
+
+  <script src="js/alternative-ranked-bars.js"></script>
+</body>
+</html>
