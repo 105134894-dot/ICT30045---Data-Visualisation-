@@ -292,9 +292,27 @@ d3.csv("data/merged.csv").then((data) => {
     dots
       .transition()
       .duration(200)
-      .attr("stroke", (d) => (active && d.country === active ? "#111" : "none"))
-      .attr("stroke-width", (d) => (active && d.country === active ? 2 : 0))
-      .attr("r", (d) => (active && d.country === active ? 6 : 5));
+      .attr("stroke", (d) => {
+        if (!active) return "none";
+        return d.country === active ? "#fff" : "none";
+      })
+      .attr("stroke-width", (d) => {
+        if (!active) return 0;
+        return d.country === active ? 2.5 : 0;
+      })
+      .attr("r", (d) => {
+        if (!active) return 5;
+        return d.country === active ? 8 : 5;
+      })
+      .style("opacity", (d) => {
+        if (!isVisible(d)) return 0;
+        if (!active) return 0.9;
+        return d.country === active ? 1 : 0.25;
+      })
+      .style("filter", (d) => {
+        if (!active) return "none";
+        return d.country === active ? "drop-shadow(0 0 4px rgba(0,0,0,0.5))" : "none";
+      });
   }
 
   function updateTrendline() {
