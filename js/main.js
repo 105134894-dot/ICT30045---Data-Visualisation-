@@ -14,7 +14,7 @@ let outerWidth = getChartOuterWidth();
 let width = outerWidth - margin.left - margin.right;
 let height = outerHeight - margin.top - margin.bottom;
 
-// ✅ REQUIRED state (these were missing — caused your errors)
+//  state (these were missing — caused your errors)
 let showTrend = false;
 let showColour = false;
 let pinnedCountry = "";
