@@ -18,6 +18,18 @@ let height = outerHeight - margin.top - margin.bottom;
 let showTrend = false;
 let showColour = false;
 let pinnedCountry = "";
+let brushedCountries = [];
+
+function updateCountSummary() {
+  const countDiv = d3.select("#countSummary");
+  const unique = new Set(brushedCountries.map(d => d.country));
+  if (pinnedCountry) unique.add(pinnedCountry);
+  if (unique.size === 0) {
+    countDiv.text("");
+  } else {
+    countDiv.text(`${unique.size} ${unique.size === 1 ? "Country" : "Countries"} selected`);
+  }
+}
 
 /* =========================
    Scales + utilities
@@ -232,6 +244,7 @@ d3.csv("data/merged.csv").then((data) => {
       <p><strong>Health spending:</strong> —</p>
     `);
     applyHighlight();
+    updateCountSummary();
   }
 
   // Click off to deselect (click on empty chart space)
@@ -263,6 +276,7 @@ d3.csv("data/merged.csv").then((data) => {
       `);
 
       applyHighlight();
+      updateCountSummary();
     })
     .on("mouseover", (event, d) => {
       tooltip
@@ -362,6 +376,7 @@ d3.csv("data/merged.csv").then((data) => {
   // Brush summary
   function setBrushSummary(selected) {
     const summaryDiv = d3.select("#brushSummary");
+    brushedCountries = selected || [];
 
     if (!selected || selected.length === 0) {
       summaryDiv.html(`
@@ -370,6 +385,7 @@ d3.csv("data/merged.csv").then((data) => {
         <p><strong>Mean spending:</strong> —</p>
         <p class="muted small">Tip: drag a rectangle over points in the chart.</p>
       `);
+      updateCountSummary();
       return;
     }
 
@@ -385,6 +401,7 @@ d3.csv("data/merged.csv").then((data) => {
       <p><strong>Mean life expectancy:</strong> ${fmt(meanLife, 2)} years</p>
       <p><strong>Mean spending:</strong> ${fmt(meanSpend, 3)}% GDP</p>
     `);
+    updateCountSummary();
   }
 
   const brush = d3
