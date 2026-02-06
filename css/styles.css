@@ -180,6 +180,14 @@ select, input[type="range"] {
   font-size: 1rem;
 }
 
+.count-summary {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  font-weight: normal;
+  font-size: 0.95rem;
+}
+
 .context, .howto, .limitations {
   background: var(--card);
   border: 1px solid var(--border);
